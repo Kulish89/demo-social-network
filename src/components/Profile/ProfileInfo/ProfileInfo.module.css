@@ -1,0 +1,10 @@
+.background {
+  height: 5em;
+  background-image: url(https://static.planetminecraft.com/files/image/minecraft/texture-pack/2020/342/13698662_l.webp);
+  background-position: center;
+}
+.userImg {
+  height: 6em;
+  border-radius: 30%;
+  margin: 0 1em 0 0.5em;
+}

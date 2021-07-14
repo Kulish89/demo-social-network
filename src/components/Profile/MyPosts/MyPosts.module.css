@@ -1,0 +1,13 @@
+.posts textarea {
+  width: 99%;
+  background-color: gainsboro;
+}
+.posts button {
+  height: 2em;
+  width: 4em;
+  background-color: #61dafb;
+  border-radius: 5px;
+}
+.posts {
+  padding: 1em;
+}

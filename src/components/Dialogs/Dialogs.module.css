@@ -1,0 +1,28 @@
+.dialogs {
+  height: 100%;
+  background-image: url(http://www.nateskorner.com/application/views/themes/theme-1/assets/img/background/bg_11.jpg);
+  display: grid;
+  grid-template-columns: 2.5fr 8fr;
+}
+.dialogsItems a {
+  text-decoration: none;
+  color: white;
+}
+.dialog .active {
+  color: aquamarine;
+}
+img {
+  height: 1.5em;
+  border-radius: 50%;
+  margin: 0 1em 0 0.5em;
+}
+.messages textarea {
+  width: 99%;
+  background-color: gainsboro;
+}
+.messages button {
+  height: 2em;
+  width: 4em;
+  background-color: #61dafb;
+  border-radius: 5px;
+}

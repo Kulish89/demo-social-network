@@ -1,1 +1,2 @@
-# demo-social-network
+# demo-sotial-network
+Demo Sotial network

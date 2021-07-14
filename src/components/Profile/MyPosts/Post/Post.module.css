@@ -1,0 +1,9 @@
+.post {
+  display: grid;
+  grid-template-columns: 2fr 10fr;
+  padding: 1em;
+}
+.post img {
+  height: 1.5em;
+  border-radius: 50%;
+}

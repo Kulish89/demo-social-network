@@ -1,0 +1,9 @@
+.paginator {
+  margin: 5px;
+}
+.pageNumber.selectedPage {
+  font-weight: bolder;
+}
+.pagesCounter span {
+  cursor: pointer;
+}
