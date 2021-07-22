@@ -1,27 +1,11 @@
 import React from "react";
 import { reduxForm } from "redux-form";
-import { required } from "../../utils/validators/validators";
+import { requiredField } from "../../utils/validators/validators";
 import { createField, Input } from "../common/FormsControls/FormsControls";
 import { connect } from "react-redux";
 import { login } from "../../Redux/auth-reducer";
 import { Redirect } from "react-router-dom";
 import classes from "../common/FormsControls/FormsControls.module.css";
-
-const Login = (props) => {
-  const onSubmit = (formData) => {
-    props.login(formData.email, formData.password, formData.rememberMe);
-  };
-  if (props.isAuth) {
-    return <Redirect to={"/profile"} />;
-  } else {
-    return (
-      <div>
-        <h1>LOGIN</h1>
-        <LoginReduxForm onSubmit={onSubmit} />
-      </div>
-    );
-  }
-};
 
 const LoginForm = ({ handleSubmit, error }) => {
   return (
@@ -29,9 +13,9 @@ const LoginForm = ({ handleSubmit, error }) => {
     <form onSubmit={handleSubmit}>
       {/* тег form обязателен для формы, обрамлять им обязательно!!!!!!! */}
 
-      {createField("Email", Input, [required], "email")}
+      {createField("Email", Input, [requiredField], "email")}
 
-      {createField("Password", Input, [required], "password", {
+      {createField("Password", Input, [requiredField], "password", {
         type: "password",
       })}
 
@@ -54,10 +38,27 @@ const LoginForm = ({ handleSubmit, error }) => {
     </form>
   );
 };
+
 // оборачиваем форму в контейнерную компоненту HOC
 const LoginReduxForm = reduxForm({
   form: "login",
 })(LoginForm);
+
+const Login = (props) => {
+  const onSubmit = (formData) => {
+    props.login(formData.email, formData.password, formData.rememberMe);
+  };
+  if (props.isAuth) {
+    return <Redirect to={"/profile"} />;
+  }
+  return (
+    <div>
+      <h1>LOGIN</h1>
+      <LoginReduxForm onSubmit={onSubmit} />
+    </div>
+  );
+};
+
 const mapStateToProps = (state) => {
   return {
     isAuth: state.auth.isAuth,

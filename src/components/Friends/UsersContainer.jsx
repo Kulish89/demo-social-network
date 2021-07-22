@@ -22,7 +22,7 @@ import {
 
 class UsersContainer extends React.Component {
   componentDidMount() {
-    this.props.getUsers(this.props.currentPage, this.props.pageSize);
+    this.props.requestUsers(this.props.currentPage, this.props.pageSize);
   }
   onPageChanged = (p) => {
     this.props.requestUsers(p, this.props.pageSize);
@@ -57,13 +57,10 @@ let mapStateToProps = (state) => {
     followingInProgress: getFollowingInProgress(state),
   };
 };
-export default compose(
-  withAuthRedirect,
-  connect(mapStateToProps, {
-    followThunk,
-    unfollowThunk,
-    setCurrentPage,
-    toggleFollowingProgress,
-    requestUsers: requestUsers,
-  })
-)(UsersContainer);
+export default connect(mapStateToProps, {
+  followThunk,
+  unfollowThunk,
+  setCurrentPage,
+  toggleFollowingProgress,
+  requestUsers: requestUsers,
+})(UsersContainer);

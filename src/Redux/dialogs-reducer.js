@@ -1,4 +1,5 @@
-const NEW_MESSAGE = "NEW_MESSAGE";
+const SEND_NEW_MESSAGE = "SEND_NEW_MESSAGE";
+
 let initialState = {
   dialogs: [
     {
@@ -37,7 +38,7 @@ let initialState = {
   ],
 };
 const dialogsReducer = (state = initialState, action) => {
-  if (action.type === NEW_MESSAGE) {
+  if (action.type === SEND_NEW_MESSAGE) {
     return {
       ...state,
       messages: [
@@ -53,7 +54,7 @@ const dialogsReducer = (state = initialState, action) => {
   return state;
 };
 export const newMessageActionCreat = (newMessageText) => {
-  return { type: NEW_MESSAGE, newMessageText };
+  return { type: SEND_NEW_MESSAGE, newMessageText };
 };
 
 export default dialogsReducer;

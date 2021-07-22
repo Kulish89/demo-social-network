@@ -10,7 +10,7 @@ export const usersAPI = {
   getUsers(currentPage = 1, pageSize = 10) {
     return instance
       .get(`users?page=${currentPage}&count=${pageSize}`)
-      .then((response) => response.data);
+      .then((response) => console.log(response.data));
   },
   follow(id) {
     return instance.post(`follow/${id}`);
@@ -21,15 +21,15 @@ export const usersAPI = {
 };
 export const headerAPI = {
   authMe() {
-    return instance.get(`auth/me`).then((response) => response.data);
+    return instance.get(`auth/me`);
   },
   login(email, password, rememberMe = false) {
     return instance
       .post(`auth/login`, { email, password, rememberMe })
-      .then((response) => response.data);
+      .then((res) => res.data);
   },
   logout() {
-    return instance.delete(`auth/login`).then((response) => response.data);
+    return instance.delete(`auth/login`);
   },
 };
 export const profileAPI = {
@@ -41,5 +41,15 @@ export const profileAPI = {
   },
   updateStatus(status) {
     return instance.put(`profile/status/`, { status: status });
+  },
+  savePhoto(file) {
+    // высылаем файл фотку, там особая форма запроса
+    let formData = new FormData();
+    formData.append("image", file);
+    return instance.put(`profile/photo/`, formData, {
+      headers: {
+        "Content-type": "multipart/form-data",
+      },
+    });
   },
 };

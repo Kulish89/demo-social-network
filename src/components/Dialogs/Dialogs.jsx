@@ -1,6 +1,9 @@
 import React from "react";
 import { Field, reduxForm } from "redux-form";
-import { maxLengthCreator, required } from "../../utils/validators/validators";
+import {
+  maxLengthCreator,
+  requiredField,
+} from "../../utils/validators/validators";
 import { Textarea } from "../common/FormsControls/FormsControls";
 import DialogItem from "./DialogItem/DialogItem";
 import classes from "./Dialogs.module.css";
@@ -11,8 +14,8 @@ const DialogForm = (props) => {
     <form onSubmit={props.handleSubmit}>
       <Field
         component={Textarea}
-        validate={[required, maxLength]}
-        name={"newMwssageText"}
+        validate={[requiredField, maxLength]}
+        name={"newMessageText"}
         placeholder={"Write your message!"}
       ></Field>
       <Field component={"button"} name={"addMessage"}>
@@ -34,7 +37,7 @@ function Dialogs({ dialogs, messages, addNewMessage }) {
 
   let addMessage = (values) => {
     // из сабмита приходят values, в которых лежит текст формы.!!!!
-    addNewMessage(values.newMwssageText);
+    addNewMessage(values.newMessageText);
   };
   return (
     <div className={classes.dialogs}>

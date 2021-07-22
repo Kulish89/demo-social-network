@@ -1,4 +1,4 @@
-import { authMe } from "./auth-reducer";
+import { getAuthUserData } from "./auth-reducer";
 
 const INITIALIZED_SUCCES = "INITIALIZED_SUCCES";
 
@@ -20,7 +20,8 @@ export const initializedSucces = () => {
 
 export const initializeApp = () => (dispatch) => {
   // если запросов много, то можно всех объединить в один массив, а потом из массива выполнять then Promise.all([массивСПромиссами]).then(()=>{})
-  dispatch(authMe()).then(() => {
+  let promise = dispatch(getAuthUserData());
+  Promise.all([promise]).then(() => {
     dispatch(initializedSucces());
   });
 };

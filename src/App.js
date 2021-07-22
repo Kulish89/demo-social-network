@@ -21,39 +21,40 @@ const ProfileContainer = React.lazy(() =>
 const DialogsContainer = React.lazy(() =>
   import("./components/Dialogs/DialogsContainer")
 );
+
 class App extends React.Component {
-  // componentDidMount() {
-  //   this.props.initializeApp();
-  // }
+  componentDidMount() {
+    this.props.initializeApp();
+  }
   render() {
     if (!this.props.initialized) {
       return <Preloader />;
-    } else {
-      return (
-        <div className="app-wrapper">
-          <HeaderContainer />
-          <NavBar />
-          <div className="app-wrapper-content">
-            <Suspense fallback={<div>Загрузка...</div>}>
-              <section>
-                <Route
-                  path="/profile/:userId?"
-                  render={() => <ProfileContainer />}
-                />
-                <Route path="/dialogs" render={() => <DialogsContainer />} />
-              </section>
-            </Suspense>
-            <Route path="/news" render={() => <News />} />
-            <Route path="/music" render={() => <Music />} />
-            <Route path="/settings" render={() => <Settings />} />
-            <Route path="/users" render={() => <UsersContainer />} />
-            <Route path="/login" render={() => <Login />} />
-          </div>
-        </div>
-      );
     }
+    return (
+      <div className="app-wrapper">
+        <HeaderContainer />
+        <NavBar />
+        <div className="app-wrapper-content">
+          <Suspense fallback={<div>Загрузка...</div>}>
+            <section>
+              <Route
+                path="/profile/:userId?"
+                render={() => <ProfileContainer />}
+              />
+              <Route path="/dialogs" render={() => <DialogsContainer />} />
+            </section>
+          </Suspense>
+          <Route path="/news" render={() => <News />} />
+          <Route path="/music" render={() => <Music />} />
+          <Route path="/settings" render={() => <Settings />} />
+          <Route path="/users" render={() => <UsersContainer />} />
+          <Route path="/login" render={() => <Login />} />
+        </div>
+      </div>
+    );
   }
 }
+
 const mapStateToProps = (state) => ({
   initialized: state.app.initialized,
 });

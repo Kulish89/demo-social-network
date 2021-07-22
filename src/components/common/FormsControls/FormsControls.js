@@ -25,23 +25,24 @@ export const Input = ({ input, meta, ...props }) => {
   );
 };
 // в метаданных есть данные об касании поля и об ошибке (сообщение об ошибке)
-export const createField = (
+export function createField(
   placeholder,
   component,
   validate,
   name,
   props = {},
   text = ""
-) => {
-  <div>
-    {/* компоненты Field пришли из редакс-форм,атрибутом component - пишем какой тег отрисовать , name - под каким именем объект пойдет на сервер.  */}
-    <Field
-      placeholder={placeholder}
-      component={component}
-      validate={validate}
-      name={name}
-      {...props}
-    ></Field>
-    {text}
-  </div>;
-};
+) {
+  return (
+    <div>
+      <Field
+        placeholder={placeholder}
+        component={component}
+        validate={validate}
+        name={name}
+        {...props}
+      ></Field>
+      {text}
+    </div>
+  );
+}
