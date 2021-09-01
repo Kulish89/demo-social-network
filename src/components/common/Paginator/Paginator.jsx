@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import classes from "./Paginator.module.css";
-import cn from "classnames";
+import cn from "classnames"; // функция cn позволяет склеивать стили к одному элементу
 let Paginator = ({
   totalItemsCount,
   pageSize,

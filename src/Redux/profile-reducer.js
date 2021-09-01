@@ -1,8 +1,10 @@
 import { profileAPI } from "../api/api";
+import { stopSubmit } from "redux-form";
 const NEW_POST = "NEW-POST";
 const SET_USER_PROFILE = "SET_USER_PROFILE";
 const SET_STATUS = "SET_STATUS";
 const SAVE_PHOTO_SUCCES = "SAVE_PHOTO_SUCCES";
+const SAVE_PROFILE_SUCCES = "SAVE_PROFILE_SUCCES";
 
 let initialState = {
   posts: [
@@ -42,6 +44,12 @@ const profileReducer = (state = initialState, action) => {
       profile: { ...state.profile, photos: action.photos },
     };
   }
+  // } else if (action.type === SAVE_PROFILE_SUCCES) {
+  //   return {
+  //     ...state,
+  //     profile: { ...state.profile, photos: action.photos },
+  //   };
+
   return state;
 };
 export const newPostActionCreat = (newPostText) => {
@@ -57,6 +65,9 @@ export const setStatus = (status) => {
 export const savePhotoSucces = (photos) => {
   return { type: SAVE_PHOTO_SUCCES, photos };
 };
+// export const saveProfileSucces = (profile) => {
+//   return { type: SAVE_PHOTO_SUCCES, photos };
+// };
 
 export const getUserProfile = (userId) => {
   return async (dispatch) => {
@@ -69,15 +80,33 @@ export const getStatus = (userId) => async (dispatch) => {
   dispatch(setStatus(response.data));
 };
 export const updateStatus = (status) => async (dispatch) => {
-  let response = await profileAPI.updateStatus(status);
-  if (response.data.resultCode === 0) {
-    dispatch(setStatus(status));
+  try {
+    let response = await profileAPI.updateStatus(status);
+    if (response.data.resultCode === 0) {
+      dispatch(setStatus(status));
+    }
+  } catch (error) {
+    alert("Some error occured");
   }
 };
 export const savePhoto = (file) => async (dispatch) => {
   let response = await profileAPI.savePhoto(file);
   if (response.data.resultCode === 0) {
     dispatch(savePhotoSucces(response.data.data.photos));
+  }
+};
+export const saveProfile = (profile) => async (dispatch, getState) => {
+  const userId = getState().auth.userId;
+  let response = await profileAPI.saveProfile(profile);
+  if (response.data.resultCode === 0) {
+    if (userId != null) {
+      dispatch(getUserProfile(userId));
+    } else {
+      throw new Error("userId can't be null");
+    }
+  } else {
+    dispatch(stopSubmit("edit-profile", { _error: response.data.messages[0] }));
+    return Promise.reject(response.data.messages[0]);
   }
 };
 export default profileReducer;

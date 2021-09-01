@@ -1,7 +1,7 @@
 import * as axios from "axios";
 const instance = axios.create({
   withCredentials: true,
-  baseUrl: "https://social-network.samuraijs.com/api/1.0/",
+  baseURL: "https://social-network.samuraijs.com/api/1.0/",
   headers: {
     "API-KEY": "94b19567-d7dd-422f-954b-d1016f970024",
   },
@@ -10,7 +10,7 @@ export const usersAPI = {
   getUsers(currentPage = 1, pageSize = 10) {
     return instance
       .get(`users?page=${currentPage}&count=${pageSize}`)
-      .then((response) => console.log(response.data));
+      .then((response) => response.data);
   },
   follow(id) {
     return instance.post(`follow/${id}`);
@@ -23,9 +23,9 @@ export const headerAPI = {
   authMe() {
     return instance.get(`auth/me`);
   },
-  login(email, password, rememberMe = false) {
+  login(email, password, rememberMe = false, captcha = null) {
     return instance
-      .post(`auth/login`, { email, password, rememberMe })
+      .post(`auth/login`, { email, password, rememberMe, captcha })
       .then((res) => res.data);
   },
   logout() {
@@ -51,5 +51,13 @@ export const profileAPI = {
         "Content-type": "multipart/form-data",
       },
     });
+  },
+  saveProfile(profile) {
+    return instance.put(`profile/`, profile);
+  },
+};
+export const securityAPI = {
+  getCaptchaUrl() {
+    return instance.get(`security/get-captcha-url`);
   },
 };

@@ -34,7 +34,7 @@ const NewPostFormRedux = reduxForm({ form: "newPostTextForm" })(NewPostForm);
 // React.memo() - HOC , который проверяет стэйт и пропсы до рендеринга!!!
 const MyPosts = React.memo((props) => {
   let postsElements = props.posts.map((el) => {
-    return <Post message={el.message} />;
+    return <Post key={el.id} message={el.message} />;
   });
 
   let addNewPost = (values) => {

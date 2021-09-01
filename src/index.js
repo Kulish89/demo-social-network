@@ -9,8 +9,8 @@ import { BrowserRouter } from "react-router-dom";
 
 ReactDOM.render(
   // можно вместо browserrouter обернуть приложение HashRouter, и тогда адрес будет сокращен, опставится хеш и в гите будет работать
-  // ВОТ ЭТО УДАЛИЛ ИЗ КОМПАНЕНТА БРАЙЗЕРРОУТЕР !!!! ЭТО ДЛЯ ГИТА!!! basename={process.env.PUBLIC_URL}
-  <BrowserRouter>
+
+  <BrowserRouter basename={process.env.PUBLIC_URL}>
     <Provider store={store}>
       <App />
     </Provider>

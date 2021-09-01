@@ -1,9 +1,10 @@
 import { getAuthUserData } from "./auth-reducer";
 
 const INITIALIZED_SUCCES = "INITIALIZED_SUCCES";
-
+const CATCHED_ERROR = "CATCHED_ERROR";
 let initialState = {
   initialized: false,
+  globalError: null,
 };
 const appReducer = (state = initialState, action) => {
   if (action.type === INITIALIZED_SUCCES) {
@@ -11,15 +12,22 @@ const appReducer = (state = initialState, action) => {
       ...state,
       initialized: true,
     };
+  } else if (action.type === CATCHED_ERROR) {
+    return {
+      ...state,
+      globalError: action.error,
+    };
   }
   return state;
 };
 export const initializedSucces = () => {
   return { type: INITIALIZED_SUCCES };
 };
+export const catchedError = (error) => {
+  return { type: CATCHED_ERROR, error };
+};
 
 export const initializeApp = () => (dispatch) => {
-  // если запросов много, то можно всех объединить в один массив, а потом из массива выполнять then Promise.all([массивСПромиссами]).then(()=>{})
   let promise = dispatch(getAuthUserData());
   Promise.all([promise]).then(() => {
     dispatch(initializedSucces());

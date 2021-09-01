@@ -1,15 +1,18 @@
 import { stopSubmit } from "redux-form";
-import { headerAPI } from "../api/api";
+import { headerAPI, securityAPI } from "../api/api";
 const SET_USER_DATA = "SET_USER_DATA";
+const GET_CAPTCHA_URL_SUCCES =
+  "social-network/security/get-captcha-url/GET_CAPTCHA_URL_SUCCES";
 
 let initialState = {
   userId: null,
   email: null,
   login: null,
   isAuth: false,
+  captchaUrl: null,
 };
 const authReducer = (state = initialState, action) => {
-  if (action.type === SET_USER_DATA) {
+  if (action.type === SET_USER_DATA || action.type === GET_CAPTCHA_URL_SUCCES) {
     return {
       ...state,
       ...action.payload,
@@ -19,6 +22,9 @@ const authReducer = (state = initialState, action) => {
 };
 export const setUserData = (userId, email, login, isAuth) => {
   return { type: SET_USER_DATA, payload: { userId, email, login, isAuth } };
+};
+export const getCaptchaUrlSucces = (captchaUrl) => {
+  return { type: GET_CAPTCHA_URL_SUCCES, payload: { captchaUrl } };
 };
 // санка - функция, которая принимает диспатч, а оборачивает её санк-креэйтор, который принимает нужные данные для аяксзапроса.
 export const getAuthUserData = () => (dispatch) => {
@@ -30,17 +36,21 @@ export const getAuthUserData = () => (dispatch) => {
   });
 };
 
-export const login = (email, password, rememberMe) => async (dispatch) => {
-  let data = await headerAPI.login(email, password, rememberMe);
+export const login =
+  (email, password, rememberMe, captcha) => async (dispatch) => {
+    let data = await headerAPI.login(email, password, rememberMe, captcha);
 
-  if (data.resultCode === 0) {
-    dispatch(getAuthUserData());
-  } else {
-    let message = data.messages.length > 0 ? data.messages[0] : "Some error";
-    // метод стопсабмит из редакс-форм , первый парамерт - название формы, а вторым обьект с _error - это на всю форму.
-    dispatch(stopSubmit("login", { _error: message }));
-  }
-};
+    if (data.resultCode === 0) {
+      dispatch(getAuthUserData());
+    } else {
+      if (data.resultCode === 10) {
+        dispatch(getCaptchaUrl());
+      }
+      let message = data.messages.length > 0 ? data.messages[0] : "Some error";
+      // метод стопсабмит из редакс-форм , первый парамерт - название формы, а вторым обьект с _error - это на всю форму.
+      dispatch(stopSubmit("login", { _error: message }));
+    }
+  };
 
 export const logout = () => (dispatch) => {
   headerAPI.logout().then((response) => {
@@ -48,6 +58,11 @@ export const logout = () => (dispatch) => {
       dispatch(setUserData(null, null, null, false));
     }
   });
+};
+export const getCaptchaUrl = () => async (dispatch) => {
+  const response = await securityAPI.getCaptchaUrl();
+  const captchaUrl = response.data.url;
+  dispatch(getCaptchaUrlSucces(captchaUrl));
 };
 
 export default authReducer;
