@@ -48,12 +48,11 @@ const dialogsReducer = (state = initialState, action) => {
           message: action.newMessageText,
         },
       ],
-      newMessageBody: "",
     };
   }
   return state;
 };
-export const newMessageActionCreat = (newMessageText) => {
+export const sendNewMessage = (newMessageText) => {
   return { type: SEND_NEW_MESSAGE, newMessageText };
 };
 

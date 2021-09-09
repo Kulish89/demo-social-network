@@ -1,6 +1,6 @@
 import React, { Suspense } from "react";
 import { Redirect, Route, Switch, withRouter } from "react-router-dom";
-import "./App.css";
+import styles from "./App.module.css";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import NavBar from "./components/Navbar/NavBar";
 import News from "./components/News/News";
@@ -38,11 +38,11 @@ class App extends React.Component {
       return <Preloader />;
     }
     return (
-      <div className="app-wrapper">
+      <div className={styles.appWrapper}>
         <HeaderContainer />
         <NavBar />
         <Switch>
-          <div className="app-wrapper-content">
+          <div className={styles.appWrapper_content}>
             {this.props.globalError && <div>Ошибка</div>}
             <Suspense fallback={<div>Загрузка...</div>}>
               <section>

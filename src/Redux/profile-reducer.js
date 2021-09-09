@@ -12,7 +12,6 @@ let initialState = {
     { id: 2, message: "Hi! It's my first App" },
     { id: 3, message: "Blablabla" },
   ],
-  newPostText: "",
   profile: null,
   status: "",
 };
@@ -52,7 +51,7 @@ const profileReducer = (state = initialState, action) => {
 
   return state;
 };
-export const newPostActionCreat = (newPostText) => {
+export const addNewPost = (newPostText) => {
   return { type: NEW_POST, newPostText };
 };
 

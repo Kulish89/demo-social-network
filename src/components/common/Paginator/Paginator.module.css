@@ -1,9 +1,19 @@
-.paginator {
-  margin: 5px;
-}
 .pageNumber.selectedPage {
   font-weight: bolder;
+  color: #61dafb;
 }
 .pagesCounter span {
   cursor: pointer;
+  margin: 0 0.3em 0 0.3em;
+}
+.pagesCounter button {
+  cursor: pointer;
+  display: inline-block;
+  font-size: 1em;
+  color: #282c34;
+  padding: 0 0.5em;
+  outline: none;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 2px;
+  transition: all 0.218s ease 0s;
 }

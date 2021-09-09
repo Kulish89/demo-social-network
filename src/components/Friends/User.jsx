@@ -1,11 +1,11 @@
 import React from "react";
 import userPhoto from "../../assets/images/user.png";
-import classes from "./Users.module.css";
+import styles from "./Users.module.css";
 import { NavLink } from "react-router-dom";
 
 let User = ({ user, unfollowThunk, followingInProgress, followThunk }) => {
   return (
-    <div className={classes.person}>
+    <div className={styles.person}>
       <span>
         <div>
           <NavLink to={"/profile/" + user.id}>
@@ -39,11 +39,9 @@ let User = ({ user, unfollowThunk, followingInProgress, followThunk }) => {
       <span>
         <span>
           <div>{user.name}</div>
-          <div>{user.status}</div>
-        </span>
-        <span>
-          <div>{"user.location.city"}</div>
-          <div>{"user.location.country"}</div>
+          {user.status && (
+            <div className={styles.status}>{`"${user.status}"`}</div>
+          )}
         </span>
       </span>
     </div>

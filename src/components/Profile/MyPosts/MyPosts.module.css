@@ -1,6 +1,7 @@
 .posts textarea {
   width: 99%;
   background-color: gainsboro;
+  resize: none;
 }
 .posts button {
   height: 2em;

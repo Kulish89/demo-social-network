@@ -1,5 +1,5 @@
 import React from "react";
-import { Field, reduxForm } from "redux-form";
+import { Field, reduxForm, reset } from "redux-form";
 import {
   maxLengthCreator,
   requiredField,
@@ -24,24 +24,27 @@ const DialogForm = (props) => {
     </form>
   );
 };
-const DialogReduxForm = reduxForm({ form: "dialogNewMessageForm" })(DialogForm);
+const DialogReduxForm = reduxForm({
+  form: "dialogNewMessageForm",
+})(DialogForm);
 
-function Dialogs({ dialogs, messages, addNewMessage }) {
+function Dialogs({ dialogs, messages, sendNewMessage }) {
   let dialogsElements = dialogs.map((el) => {
-    return <DialogItem id={el.id} name={el.name} avatar={el.avatar} />;
+    return <DialogItem key={el.id} name={el.name} avatar={el.avatar} />;
   });
 
   let messagesElements = messages.map((el) => {
-    return <Message message={el.message} />;
+    return <Message key={el.id} message={el.message} />;
   });
 
-  let addMessage = (values) => {
-    // из сабмита приходят values, в которых лежит текст формы.!!!!
-    addNewMessage(values.newMessageText);
+  let addMessage = (values, dispatch, props) => {
+    // из сабмита приходят values, в которых лежит текст формы.!!!! и дистпатч, в кторый можно передавать функцию ресет!!!
+    sendNewMessage(values.newMessageText);
+    dispatch(reset("dialogNewMessageForm"));
   };
   return (
-    <div className={classes.dialogs}>
-      <div className={classes.dialogsItems}>{dialogsElements}</div>
+    <div className={classes.dialogsSection}>
+      <div className={classes.dialogs}>{dialogsElements}</div>
 
       <div className={classes.messages}>
         {messagesElements}

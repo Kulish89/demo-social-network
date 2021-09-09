@@ -1,6 +1,41 @@
-.pagesCounter span {
-  cursor: pointer;
+.paginator {
+  text-align: center;
+  margin: 0.5em 0 0.5em 0;
 }
-.selectedPage {
-  font-weight: bolder;
+.person {
+  border: solid #383a3b 2px;
+  border-radius: 7%;
+  margin: 2em 2.5em;
+  padding: 1em;
+  background-color: #383a3b;
+}
+.person a img {
+  height: 8em;
+  border-radius: 50%;
+}
+.usersList {
+  text-align: center;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+.status {
+  font-style: italic;
+  color: #9fa1a3;
+  font-size: 0.8em;
+}
+.person button {
+  cursor: pointer;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  font-size: 0.8em;
+  color: #282c34;
+  text-decoration: none;
+  user-select: none;
+  padding: 0.2em 1em;
+  outline: none;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 2px;
+  background: rgb(245, 245, 245) linear-gradient(#f4f4f4, #f1f1f1);
+  transition: all 0.218s ease 0s;
 }

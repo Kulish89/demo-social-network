@@ -1,13 +1,63 @@
 .background {
-  height: 5em;
-  background-image: url(https://static.planetminecraft.com/files/image/minecraft/texture-pack/2020/342/13698662_l.webp);
-  background-position: center;
+  height: 15vh;
+  background-image: url(../../../assets/images/social-network-background.jpg);
+  background-size: cover;
 }
+.mainInfoAboutProfile {
+  display: grid;
+  grid-template-columns: 1fr 7fr;
+  margin: 1.5em 1em;
+}
+.inputUploadFile {
+  display: none;
+}
+.labelUploadFile {
+  border: 2px dashed grey;
+  border-radius: 5px;
+  display: block;
+  padding: 0 0.5em;
+  transition: border 300ms ease;
+  cursor: pointer;
+  text-align: center;
+  color: #9fa1a3;
+}
+
 .userImg {
-  height: 6em;
-  border-radius: 30%;
-  margin: 0 1em 0 0.5em;
+  height: 8em;
+  border-radius: 50%;
+}
+.status {
+  font-style: italic;
+  color: #9fa1a3;
+  font-size: 1em;
+  font-weight: bold;
+  margin: 0 1em;
+}
+.statusTextarea {
+  width: 100%;
+  background-color: #7c8183;
+  border: 2px solid #697072;
+  resize: none;
+}
+.descriptionProfile {
+  margin: 1.5em 1em;
+  font-size: 0.8em;
+}
+.descriptionProfile b {
+  color: #61dafb;
 }
 .contacts {
   padding: 0px 0px 0px 1em;
+}
+.dropdownButton {
+  cursor: pointer;
+  border-bottom: 2px solid #61dafb;
+}
+.dropdownContainer {
+  display: none;
+}
+.active {
+  display: block;
+}
+.caretdown {
 }

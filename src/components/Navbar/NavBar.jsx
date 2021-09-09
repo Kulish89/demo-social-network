@@ -1,37 +1,36 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import UsersContainer from "../Friends/UsersContainer";
-import classes from "./NavBar.module.css";
+import styles from "./NavBar.module.css";
 function NavBar() {
   return (
-    <nav className={classes.nav}>
-      <div>
-        <NavLink to="/profile" activeClassName={classes.active}>
+    <nav className={styles.nav}>
+      <div className={styles.item}>
+        <NavLink to="/profile" activeClassName={styles.active}>
           Profile
         </NavLink>
       </div>
-      <div>
-        <NavLink to="/dialogs" activeClassName={classes.active}>
+      <div className={styles.item}>
+        <NavLink to="/dialogs" activeClassName={styles.active}>
           Messages
         </NavLink>
       </div>
-      <div>
-        <NavLink to="/news" activeClassName={classes.active}>
+      <div className={styles.item}>
+        <NavLink to="/news" activeClassName={styles.active}>
           News
         </NavLink>
       </div>
-      <div>
-        <NavLink to="/music" activeClassName={classes.active}>
+      <div className={styles.item}>
+        <NavLink to="/music" activeClassName={styles.active}>
           Music
         </NavLink>
       </div>
-      <div>
-        <NavLink to="/settings" activeClassName={classes.active}>
+      <div className={styles.item}>
+        <NavLink to="/settings" activeClassName={styles.active}>
           Settings
         </NavLink>
       </div>
-      <div className={classes.friends}>
-        <NavLink to="/users" activeClassName={classes.active}>
+      <div className={styles.item}>
+        <NavLink to="/users" activeClassName={styles.active}>
           Users
         </NavLink>
       </div>

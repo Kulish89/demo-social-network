@@ -1,23 +1,19 @@
-body {
-  background-color: whitesmoke;
-}
-.app-wrapper {
+.appWrapper {
+  margin: 0 auto;
   display: grid;
   grid-template-rows: 60px 1fr;
   grid-template-columns: 2fr 10fr;
-  grid-gap: 5px;
-  margin: 0 auto;
+  grid-gap: 0.5em;
   grid-template-areas:
     "header header"
     "nav cont";
 
   min-height: 100vh;
-  width: 55%;
-  margin: 0 auto;
-  font-size: calc(10px + 2vmin);
+  width: 60%;
+  font-size: calc(10px + 1.5vmin);
   color: white;
 }
-.app-wrapper-content {
+.appWrapper_content {
   grid-area: cont;
   background-color: #282c34;
 }

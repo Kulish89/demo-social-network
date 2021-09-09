@@ -1,28 +1,51 @@
-.dialogs {
+.dialogsSection {
   height: 100%;
-  background-image: url(http://www.nateskorner.com/application/views/themes/theme-1/assets/img/background/bg_11.jpg);
   display: grid;
   grid-template-columns: 2.5fr 8fr;
 }
-.dialogsItems a {
+.dialog {
+  margin-top: 1em;
+}
+.dialog a {
   text-decoration: none;
   color: white;
 }
 .dialog .active {
   color: aquamarine;
 }
-img {
-  height: 1.5em;
+.dialog img {
+  height: 2em;
   border-radius: 50%;
   margin: 0 1em 0 0.5em;
 }
+.message {
+  font-weight: lighter;
+  margin-top: 1em;
+}
 .messages textarea {
+  margin-top: 1em;
   width: 99%;
-  background-color: gainsboro;
+  background: rgb(245, 245, 245) linear-gradient(#f4f4f4, #f1f1f1);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  outline: none;
+  resize: none;
 }
 .messages button {
-  height: 2em;
-  width: 4em;
-  background-color: #61dafb;
-  border-radius: 5px;
+  display: inline-block;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  font-size: 0.8em;
+  font-weight: bold;
+  color: #282c34;
+  text-decoration: none;
+  user-select: none;
+  padding: 0.2em 1em;
+  outline: none;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 2px;
+  background: rgb(245, 245, 245) linear-gradient(#f4f4f4, #f1f1f1);
+  transition: all 0.218s ease 0s;
 }

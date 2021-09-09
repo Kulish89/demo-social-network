@@ -1,10 +1,28 @@
 .header {
   grid-area: header;
   background-color: #61dafb;
+  padding: 0.2em;
 }
 .header img {
   height: 100%;
 }
 .loginBlock {
   float: right;
+  text-align: center;
+}
+.loginBlock button {
+  display: inline-block;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  font-size: 0.8em;
+  color: #282c34;
+  text-decoration: none;
+  user-select: none;
+  padding: 0.2em 1.2em;
+  outline: none;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 2px;
+  background: rgb(245, 245, 245) linear-gradient(#f4f4f4, #f1f1f1);
+  transition: all 0.218s ease 0s;
 }

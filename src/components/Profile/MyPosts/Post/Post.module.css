@@ -4,6 +4,14 @@
   padding: 1em;
 }
 .post img {
-  height: 1.5em;
+  height: 2em;
   border-radius: 50%;
+}
+.photo {
+  text-align: center;
+}
+.message {
+  border: solid #383a3b 2px;
+  border-radius: 5px;
+  background-color: #383a3b;
 }

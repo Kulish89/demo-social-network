@@ -1,5 +1,5 @@
 import React from "react";
-import { Field, reduxForm } from "redux-form";
+import { Field, reduxForm, reset } from "redux-form";
 import {
   maxLengthCreator,
   requiredField,
@@ -7,7 +7,7 @@ import {
 import { Textarea } from "../../common/FormsControls/FormsControls";
 import classes from "./MyPosts.module.css";
 import Post from "./Post/Post";
-const maxLength10 = maxLengthCreator(10);
+const maxLength10 = maxLengthCreator(300);
 const NewPostForm = (props) => {
   return (
     <form onSubmit={props.handleSubmit}>
@@ -37,15 +37,16 @@ const MyPosts = React.memo((props) => {
     return <Post key={el.id} message={el.message} />;
   });
 
-  let addNewPost = (values) => {
+  let publicNewPost = (values, dispatch) => {
     props.addNewPost(values.newPostText);
+    dispatch(reset("newPostTextForm"));
   };
   return (
     <div>
       <div className={classes.posts}>
         <h3>My posts</h3>
         <div>New post</div>
-        <NewPostFormRedux onSubmit={addNewPost} />
+        <NewPostFormRedux onSubmit={publicNewPost} />
       </div>
 
       <div>{postsElements}</div>

@@ -1,6 +1,6 @@
 import React from "react";
 import Preloader from "../../common/Preloader/Preloader";
-import classes from "./ProfileInfo.module.css";
+import styles from "./ProfileInfo.module.css";
 import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 import userPhoto from "../../../assets/images/user.png";
 import ProfileDataForm from "./ProfileDataForm";
@@ -29,12 +29,36 @@ const ProfileInfo = ({
   };
   return (
     <div>
-      <div className={classes.background}></div>
-      <img
-        src={profile.photos.large || userPhoto}
-        className={classes.userImg}
-      />
-      {isOwner && <input type={"file"} onChange={onMainPhotoSelected} />}
+      <div className={styles.background}></div>
+      <div className={styles.mainInfoAboutProfile}>
+        <div>
+          <div>
+            <img
+              src={profile.photos.large || userPhoto}
+              className={styles.userImg}
+            />
+          </div>
+          <div>
+            {isOwner && (
+              <label className={styles.labelUploadFile}>
+                <input
+                  type={"file"}
+                  onChange={onMainPhotoSelected}
+                  className={styles.inputUploadFile}
+                />
+                <span>upload file</span>
+              </label>
+            )}
+          </div>
+        </div>
+
+        <ProfileStatusWithHooks
+          status={status}
+          updateStatus={updateStatus}
+          isOwner={isOwner}
+        />
+      </div>
+
       {editMode ? (
         <ProfileDataForm
           initialValues={profile}
@@ -50,19 +74,14 @@ const ProfileInfo = ({
           }}
         />
       )}
-
-      <ProfileStatusWithHooks status={status} updateStatus={updateStatus} />
     </div>
   );
 };
 const ProfileData = ({ profile, isOwner, goToEditMode }) => {
+  const [contactsContainerActive, setContactsContainerActive] =
+    React.useState(false);
   return (
-    <div>
-      {isOwner && (
-        <div>
-          <button onClick={goToEditMode}>Edit</button>
-        </div>
-      )}
+    <div className={styles.descriptionProfile}>
       <div>
         <b>Full name:</b> {profile.fullName}
       </div>
@@ -75,28 +94,47 @@ const ProfileData = ({ profile, isOwner, goToEditMode }) => {
         </div>
       )}
       <div>
-        <b>About me:</b>
-        {profile.aboutMe}
+        <b>About me:</b> {profile.aboutMe}
       </div>
       <div>
-        <b>Contacts:</b>
-        {Object.keys(profile.contacts).map((key) => {
-          return (
-            <Contacts
-              key={key}
-              contactTitle={key}
-              contactValue={profile.contacts[key]}
-            />
-          );
-        })}
+        <b
+          className={styles.dropdownButton}
+          onClick={() => {
+            setContactsContainerActive(!contactsContainerActive);
+          }}
+        >
+          Contacts:
+        </b>
+        <div
+          className={
+            contactsContainerActive
+              ? styles.dropdownContainer + " " + styles.active
+              : styles.dropdownContainer
+          }
+        >
+          {Object.keys(profile.contacts).map((key) => {
+            return (
+              <Contacts
+                key={key}
+                contactTitle={key}
+                contactValue={profile.contacts[key]}
+              />
+            );
+          })}
+        </div>
       </div>
+      {isOwner && contactsContainerActive && (
+        <div>
+          <button onClick={goToEditMode}>Edit</button>
+        </div>
+      )}
     </div>
   );
 };
 
 const Contacts = ({ contactTitle, contactValue }) => {
   return (
-    <div className={classes.contacts}>
+    <div className={styles.contacts}>
       {contactTitle}: {contactValue}
     </div>
   );

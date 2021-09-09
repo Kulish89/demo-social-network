@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import classes from "./Paginator.module.css";
+import styles from "./Paginator.module.css";
 import cn from "classnames"; // функция cn позволяет склеивать стили к одному элементу
-let Paginator = ({
+const Paginator = ({
   totalItemsCount,
   pageSize,
   currentPage,
@@ -18,15 +18,17 @@ let Paginator = ({
   let leftPortionPageNumber = (portionNumber - 1) * portionSize + 1;
   let rightPortionPageNumber = portionNumber * portionSize;
   return (
-    <div className={classes.pagesCounter}>
-      {portionNumber > 1 && (
+    <div className={styles.pagesCounter}>
+      {portionNumber > 1 ? (
         <button
           onClick={() => {
             setPortionNumber(portionNumber - 1);
           }}
         >
-          PREV
+          &laquo;&laquo;
         </button>
+      ) : (
+        <button disabled>&laquo;&laquo;</button>
       )}
       {pages
         .filter(
@@ -36,8 +38,8 @@ let Paginator = ({
           return (
             <span
               className={cn(
-                { [classes.selectedPage]: currentPage === p },
-                classes.pageNumber
+                { [styles.selectedPage]: currentPage === p },
+                styles.pageNumber
               )}
               key={p}
               onClick={() => {
@@ -48,14 +50,16 @@ let Paginator = ({
             </span>
           );
         })}
-      {portionCount > portionNumber && (
+      {portionCount > portionNumber ? (
         <button
           onClick={() => {
             setPortionNumber(portionNumber + 1);
           }}
         >
-          NEXT
+          &raquo;&raquo;
         </button>
+      ) : (
+        <button disabled>&raquo;&raquo;</button>
       )}
     </div>
   );

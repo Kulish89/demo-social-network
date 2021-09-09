@@ -8,35 +8,7 @@ const TOGGLE_IS_FETCHING = "TOGGLE_IS_FETCHING";
 const TOGGLE_IS_FOLLOWING_PROGRESS = "TOGGLE_IS_FOLLOWING_PROGRESS";
 
 let initialState = {
-  users: [
-    // {
-    //   id: 1,
-    //   followed: false,
-    //   name: "Dmitri",
-    //   status: "I am a boss",
-    //   location: { city: "Minsk", country: "Belarus" },
-    //   avatar:
-    //     "https://profilemagazine.com/wp-content/uploads/2020/04/Ajmere-Dale-Square-thumbnail.jpg",
-    // },
-    // {
-    //   id: 2,
-    //   followed: true,
-    //   name: "Andrew",
-    //   status: "I am a boss too",
-    //   location: { city: "Moskow", country: "Russia" },
-    //   avatar:
-    //     "https://res-1.cloudinary.com/crunchbase-production/image/upload/c_thumb,h_256,w_256,f_auto,g_faces,z_0.7,q_auto:eco/v1443584492/vosgqpvicpjgknz2rn2l.png",
-    // },
-    // {
-    //   id: 3,
-    //   followed: false,
-    //   name: "Sasha",
-    //   status: "I am a boss too",
-    //   location: { city: "Kiev", country: "Ukraine" },
-    //   avatar:
-    //     "https://media.creativemornings.com/uploads/user/avatar/49419/Bechtel_Profile_Square.jpg",
-    // },
-  ],
+  users: [],
   totalUsersCount: 0,
   currentPage: 1,
   pageSize: 10,
@@ -115,12 +87,14 @@ export const toggleIsFetching = (isFetching) => {
 export const toggleFollowingProgress = (isFetching, userId) => {
   return { type: TOGGLE_IS_FOLLOWING_PROGRESS, isFetching, userId };
 };
+
+// _________________________________________________________________________________
+
 export const requestUsers = (currentPage, pageSize) => {
   return (dispatch) => {
     dispatch(toggleIsFetching(true));
     dispatch(setCurrentPage(currentPage));
     usersAPI.getUsers(currentPage, pageSize).then((data) => {
-      debugger;
       dispatch(toggleIsFetching(false));
       dispatch(setUsers(data.items));
       dispatch(setTotalUsersCount(data.totalCount));
