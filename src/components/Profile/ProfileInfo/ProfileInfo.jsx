@@ -103,7 +103,7 @@ const ProfileData = ({ profile, isOwner, goToEditMode }) => {
             setContactsContainerActive(!contactsContainerActive);
           }}
         >
-          Contacts:
+          Contacts: {contactsContainerActive ? <i>&#9650;</i> : <i>&#9660;</i>}
         </b>
         <div
           className={

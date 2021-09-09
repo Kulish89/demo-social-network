@@ -51,13 +51,11 @@
 }
 .dropdownButton {
   cursor: pointer;
-  border-bottom: 2px solid #61dafb;
+  border-bottom: 1px solid #61dafb;
 }
 .dropdownContainer {
   display: none;
 }
 .active {
   display: block;
-}
-.caretdown {
 }
