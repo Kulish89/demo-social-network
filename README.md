@@ -1,6 +1,8 @@
 # demo-sotial-network
-Demo Sotial network
-technologies: React, React-Redux, Redux-Form, React-Router-Dom, Redux-Thunk, Axios, Reselect.
+Demo Sotial network.
+
+
+Technologies: React, React-Redux, Redux-Form, React-Router-Dom, Redux-Thunk, Axios, Reselect.
 
 
 
