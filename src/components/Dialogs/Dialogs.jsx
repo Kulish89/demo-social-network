@@ -38,7 +38,6 @@ function Dialogs({ dialogs, messages, sendNewMessage }) {
   });
 
   let addMessage = (values, dispatch, props) => {
-    // из сабмита приходят values, в которых лежит текст формы.!!!! и дистпатч, в кторый можно передавать функцию ресет!!!
     sendNewMessage(values.newMessageText);
     dispatch(reset("dialogNewMessageForm"));
   };

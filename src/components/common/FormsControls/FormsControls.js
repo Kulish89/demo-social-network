@@ -1,7 +1,6 @@
 import React from "react";
 import { Field } from "redux-form";
 import classes from "./FormsControls.module.css";
-// в компоненте используем рест оператор, чтобы раоботать с нужными пропсами - импут и т.д.
 export const Textarea = ({ input, meta, ...props }) => {
   const hasError = meta.touched && meta.error;
   return (
@@ -24,7 +23,6 @@ export const Input = ({ input, meta, ...props }) => {
     </div>
   );
 };
-// в метаданных есть данные об касании поля и об ошибке (сообщение об ошибке)
 export function createField(
   placeholder,
   component,

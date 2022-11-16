@@ -13,13 +13,11 @@ import { withAuthRedirect } from "../../hoc/WithAuthRedirect";
 import { compose } from "redux";
 
 class ProfileContainer extends React.Component {
-  // создаем метод, в ктором происходит содержимое методов жизненого цикла
   refreshProfile() {
     let userId = this.props.match.params.userId;
     if (!userId) {
       userId = this.props.authorizedUserId;
       if (!userId) {
-        // это способ редиректить не через рендер
         this.props.history.push("/login");
       }
     }
@@ -29,7 +27,7 @@ class ProfileContainer extends React.Component {
   componentDidMount() {
     this.refreshProfile();
   }
-  componentDidUpdate(prevProps, prevState, snapshot) {
+  componentDidUpdate(prevProps) {
     if (this.props.match.params.userId != prevProps.match.params.userId) {
       this.refreshProfile();
     }

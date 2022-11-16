@@ -26,7 +26,7 @@ export const setUserData = (userId, email, login, isAuth) => {
 export const getCaptchaUrlSucces = (captchaUrl) => {
   return { type: GET_CAPTCHA_URL_SUCCES, payload: { captchaUrl } };
 };
-// санка - функция, которая принимает диспатч, а оборачивает её санк-креэйтор, который принимает нужные данные для аяксзапроса.
+
 export const getAuthUserData = () => (dispatch) => {
   return headerAPI.authMe().then((response) => {
     if (response.data.resultCode === 0) {
@@ -47,7 +47,6 @@ export const login =
         dispatch(getCaptchaUrl());
       }
       let message = data.messages.length > 0 ? data.messages[0] : "Some error";
-      // метод стопсабмит из редакс-форм , первый парамерт - название формы, а вторым обьект с _error - это на всю форму.
       dispatch(stopSubmit("login", { _error: message }));
     }
   };

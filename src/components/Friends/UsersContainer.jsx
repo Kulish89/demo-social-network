@@ -8,9 +8,7 @@ import {
   toggleFollowingProgress,
   requestUsers,
 } from "../../Redux/users-reducer";
-import { withAuthRedirect } from "../../hoc/WithAuthRedirect";
 import Preloader from "../common/Preloader/Preloader";
-import { compose } from "redux";
 import {
   getCurrentPage,
   getFollowingInProgress,

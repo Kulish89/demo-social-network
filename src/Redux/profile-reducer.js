@@ -43,11 +43,6 @@ const profileReducer = (state = initialState, action) => {
       profile: { ...state.profile, photos: action.photos },
     };
   }
-  // } else if (action.type === SAVE_PROFILE_SUCCES) {
-  //   return {
-  //     ...state,
-  //     profile: { ...state.profile, photos: action.photos },
-  //   };
 
   return state;
 };
@@ -64,10 +59,6 @@ export const setStatus = (status) => {
 export const savePhotoSucces = (photos) => {
   return { type: SAVE_PHOTO_SUCCES, photos };
 };
-// export const saveProfileSucces = (profile) => {
-//   return { type: SAVE_PHOTO_SUCCES, photos };
-// };
-
 export const getUserProfile = (userId) => {
   return async (dispatch) => {
     let response = await profileAPI.getProfile(userId);

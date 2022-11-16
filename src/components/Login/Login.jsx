@@ -9,10 +9,7 @@ import classes from "../common/FormsControls/FormsControls.module.css";
 
 const LoginForm = ({ handleSubmit, error, captchaUrl }) => {
   return (
-    // прокидываем в форму хэндлсабмит, чтобы не перегружалась страница
     <form onSubmit={handleSubmit}>
-      {/* тег form обязателен для формы, обрамлять им обязательно!!!!!!! */}
-
       {createField("Email", Input, [requiredField], "email")}
 
       {createField("Password", Input, [requiredField], "password", {
@@ -35,13 +32,11 @@ const LoginForm = ({ handleSubmit, error, captchaUrl }) => {
       {error && <div className={classes.formError}> {error}</div>}
       <div>
         <button>login</button>
-        {/* кнопка в форме автоматом сабмитит форму и страница перегружается */}
       </div>
     </form>
   );
 };
 
-// оборачиваем форму в контейнерную компоненту HOC
 const LoginReduxForm = reduxForm({
   form: "login",
 })(LoginForm);
